@@ -1,9 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
-import { Button } from './Button';
+import Button from '../components/button/Button';
+import { ButtonSizes, ButtonTypes } from '../components/button/styles';
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
-const meta = {
+type Story = StoryObj<typeof Button>;
+
+const meta: Meta<typeof Button> = {
   title: 'Example/Button',
   component: Button,
   parameters: {
@@ -13,38 +15,31 @@ const meta = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
-} satisfies Meta<typeof Button>;
+  argTypes: {},
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary: Story = {
+export const Solid: Story = {
   args: {
-    primary: true,
-    label: 'Button',
+    size: ButtonSizes.SMALL,
+    variantType: ButtonTypes.SOLID,
+    children: 'Button',
+  }
+};
+
+export const Outline: Story = {
+  args: {
+    size: ButtonSizes.MEDIUM,
+    variantType: ButtonTypes.OUTLINE,
+    children: 'Button',
   },
 };
 
-export const Secondary: Story = {
+export const Ghost: Story = {
   args: {
-    label: 'Button',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: 'large',
-    label: 'Button',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    size: 'small',
-    label: 'Button',
+    size: ButtonSizes.LARGE,
+    variantType: ButtonTypes.GHOST,
+    children: 'Button',
   },
 };
